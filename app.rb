@@ -1,6 +1,6 @@
 require('sinatra')
 require('sinatra/reloader')
-require('./lib/customers')
+require('./lib/customer')
 require('./lib/animal')
 also_reload('lib/**/*.rb')
 require("pg")
