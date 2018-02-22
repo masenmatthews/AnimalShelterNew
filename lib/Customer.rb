@@ -28,8 +28,10 @@ class Customer
       id = item.fetch("id")
       customers.push(Customer.new({:customer_name => customer_name, :phone => phone, :animal_preference => animal_preference, :breed_preference => breed_preference, :customer_id => customer_id, :id => id}))
     end
-    
   end
 
-
+  def save
+    result = DB.exec("INSERT INTO customers (customer_name, phone, animal_preference, breed_preference, customer_id) VALUES ('#{@customer_name}', '#{@phone}', '#{@animal_preference}', '#{@breed_preference}', '#{@customer_id}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
 end
