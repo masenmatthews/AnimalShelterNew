@@ -16,5 +16,18 @@ class Customer
      self.customer_name().==(another.customer_name()).&(self.id().==(another.id())).&(self.phone().==(another.phone())).&(self.animal_preference().==(another.animal_preference())).&(self.breed_preference().==(another.breed_preference())).&(self.customer_id().==(another.customer_id()))
   end
 
+  def self.all
+    returned_customers = DB.exec("SELECT * FROM customers;")
+    customers = []
+    returned_customers.each() do |item|
+      customer_name = item.fetch("customer_name")
+      phone = item.fetch("phone")
+      animal_preference = item.fetch("animal_preference")
+      breed_preference = item.fetch("breed_preference")
+      customer_id = item.fetch("customer_id")
+      id = item.fetch("id")
+      customers.push(Customer.new({:customer_name => customer_name, :phone => phone, :animal_preference => animal_preference, :breed_preference => breed_preference, :customer_id => customer_id, :id => id}))
+  end
+
 
 end
