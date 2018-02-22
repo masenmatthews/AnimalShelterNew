@@ -27,6 +27,8 @@ class Customer
       customer_id = item.fetch("customer_id")
       id = item.fetch("id")
       customers.push(Customer.new({:customer_name => customer_name, :phone => phone, :animal_preference => animal_preference, :breed_preference => breed_preference, :customer_id => customer_id, :id => id}))
+    end
+    
   end
 
 

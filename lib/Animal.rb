@@ -29,6 +29,7 @@ class Animal
        breed = item.fetch("breed")
        id = item.fetch("id")
        animals.push(Animal.new({:animal_name => animal_name, :animal_gender => animal_gender, :animal_type => animal_type, :animal_id => animal_id, :admit_date => admit_date, :breed => breed, :id => id}))
+     end
    end
 
 
