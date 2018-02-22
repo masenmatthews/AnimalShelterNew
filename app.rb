@@ -5,4 +5,22 @@ require('./lib/animal')
 also_reload('lib/**/*.rb')
 require("pg")
 
-DB = PG.connect({:dbname => "animal_shelter"})
+get("/") do
+  erb(:homepage)
+end
+
+get("/staff") do
+  erb(:staff)
+end
+
+get("/adoptee") do
+  erb(:adoptee)
+end
+
+post("/staff/success") do
+  erb(:confirmation)
+ end
+
+ post("/adoptee/success") do
+   erb(:confirmation)
+ end
