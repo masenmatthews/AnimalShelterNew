@@ -13,9 +13,9 @@ describe(Animal) do
 
       describe("#save") do
         it("adds animal information to the array of saved tasks") do
-          animal1 = Animal.new({:animal_name => "Lassie", :animal_gender => "Female", :animal_type => "dog", :animal_id => 70, :admit_date => "2018-01-16", :breed => "mixed", :id => nil})
+          animal1 = Animal.new({:animal_name => "Lassie", :animal_gender => "Female", :animal_type => "dog", :animal_id => 70, :admit_date => "2018-01-16 00:00:00", :breed => "mixed", :id => nil})
           animal1.save
-          binding.pry
+          #binding.pry
           expect(Animal.all()).to(eq([animal1]))
         end
       end
