@@ -21,7 +21,7 @@ class Animal
      returned_animals = DB.exec("SELECT * FROM animals;")
      animals = []
      returned_animals.each() do |item|
-       animal_nane = item.fetch("animal_name")
+       animal_name = item.fetch("animal_name")
        animal_gender = item.fetch("animal_gender")
        animal_type = item.fetch("animal_type")
        animal_id = item.fetch("animal_id")
@@ -30,10 +30,10 @@ class Animal
        id = item.fetch("id")
        animals.push(Animal.new({:animal_name => animal_name, :animal_gender => animal_gender, :animal_type => animal_type, :animal_id => animal_id, :admit_date => admit_date, :breed => breed, :id => id}))
      end
+     return animals
    end
 
    def save
-     result = DB.exec("INSERT INTO animals (animal_name, animal_gender, animal_type, animal_id, admit_date, breed) VALUES ('#{@animal_name}', '#{@animal_gender}', '#{@animal_type}', '#{@animal_id}', '#{@admit_date}', '#{@breed}') RETURNING id;")
-     @id = result.first().fetch("id").to_i()
+     DB.exec("INSERT INTO animals (animal_name, animal_gender, animal_type, animal_id, admit_date, breed) VALUES ('#{@animal_name}', '#{@animal_gender}', '#{@animal_type}', '#{@animal_id}', '#{@admit_date}', '#{@breed}') RETURNING id;")
    end
 end
