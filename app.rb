@@ -26,7 +26,8 @@ post("/staff/success") do
   animal_id = params.fetch("animal_id").to_i()
   breed = params.fetch("breed")
   admit_date = params.fetch("admit_date")
-  @animal = Animal.new({:animal_name => animal_name, :animal_gender => animal_gender, :animal_type => animal_type, :animal_id => animal_id, :admit_date => admit_date, :breed => breed})
+  id = Animal.find(id)
+  @animal = Animal.new({:animal_name => animal_name, :animal_gender => animal_gender, :animal_type => animal_type, :animal_id => animal_id, :admit_date => admit_date, :breed => breed, :id => id})
   @animal.save()
   erb(:confirmation)
  end
