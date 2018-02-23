@@ -5,6 +5,8 @@ require('./lib/animal')
 also_reload('lib/**/*.rb')
 require("pg")
 
+DB = PG.connect({:dbname => "animal_shelter"})
+
 get("/") do
   erb(:homepage)
 end
@@ -18,6 +20,14 @@ get("/adoptee") do
 end
 
 post("/staff/success") do
+  animal_name = params.fetch("animal_name")
+  animal_gender = params.fetch("animal_gender")
+  animal_type = params.fetch("animal_type")
+  animal_id = params.fetch("animal_id").to_i()
+  breed = params.fetch("breed")
+  admit_date = params.fetch("admit_date")
+  @animal = Animal.new({:animal_name => animal_name, :animal_gender => animal_gender, :animal_type => animal_type, :animal_id => animal_id, :admit_date => admit_date, :breed => breed})
+  @animal.save()
   erb(:confirmation)
  end
 

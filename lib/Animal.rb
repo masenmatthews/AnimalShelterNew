@@ -13,10 +13,6 @@ class Animal
     @id = attributes.fetch(:id)
   end
 
-  def ==(another)
-     self.animal_name().==(another.animal_name()).&(self.animal_gender().==(another.animal_gender())).&(self.animal_type().==(another.animal_type())).&(self.animal_id().==(another.animal_id())).&(self.admit_date().==(another.admit_date())).&(self.breed().==(another.breed()))
-   end
-
    def self.all
      returned_animals = DB.exec("SELECT * FROM animals;")
      animals = []
@@ -32,6 +28,20 @@ class Animal
      end
       animals
    end
+
+    def self.find(id)
+       identified_animal = nil
+       Animal.all().each do |item|
+        if item.id().==(id)
+          identified_animal = item
+        end
+      end
+      identified_animal
+    end
+
+    def ==(another)
+      self.animal_name().==(another.animal_name()).&(self.animal_gender().==(another.animal_gender())).&(self.animal_type().==(another.animal_type())).&(self.animal_id().==(another.animal_id())).&(self.admit_date().==(another.admit_date())).&(self.breed().==(another.breed()))
+    end
 
    def save
      result = DB.exec("INSERT INTO animals (animal_name, animal_gender, animal_type, animal_id, admit_date, breed) VALUES ('#{@animal_name}', '#{@animal_gender}', '#{@animal_type}', '#{@animal_id}', '#{@admit_date}', '#{@breed}') RETURNING id;")
